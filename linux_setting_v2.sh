@@ -32,8 +32,7 @@ echo "Done."
 
 ### Change Hostname ###
 echo "-------------------------------------"
-printf "Hostname : "
-read hostname
+read -p "hostname: " hostname
 hostnamectl set-hostname $hostname
 echo "Done. Changes will be apply after reboot!"
 
