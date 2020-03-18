@@ -28,7 +28,7 @@ else
 	sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/sysconfig/selinux
 	sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 fi
-echo "Done."
+echo "Done. Changes will be apply after reboot!"
 
 ### Change Hostname ###
 echo "-------------------------------------"
