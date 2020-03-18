@@ -69,12 +69,9 @@ echo "-------------------------------------------------------------------"
 touch $FILE
 touch /etc/modprobe.d/bonding.conf
 
-printf "IP address? "
-read ipv4
-printf "Netmask? "
-read netmask
-printf "Gateway? "
-read gateway
+read -p "IP address: " ipv4
+read -p "Netmask: " netmask
+read -p "Gateway: " gateway
 
 echo "DEVICE=$bond" >> $FILE
 echo "NAME=$bond" >> $FILE
