@@ -1,0 +1,26 @@
+---
+- name: Configure SSH Server
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: check and comment org X11Forwarding 
+      lineinfile:
+        state: present
+        path: /etc/ssh/sshd_config
+        regexp: '^X11Forwarding yes' 
+        line: '#X11Forwarding yes'
+
+    - name: modify X11Forwarding parameter
+      lineinfile:
+        state: present
+        path: /etc/ssh/sshd_config
+        line: 'X11Forwarding no'
+        insertafter: '^#X11Forwarding'
+
+    - name: modify MaxAuthTries parameter
+      lineinfile:
+        state: present
+        path: /etc/ssh/sshd_config
+        line: 'MaxAuthTries 3'
+        insertafter: '^#MaxAuthTries'
