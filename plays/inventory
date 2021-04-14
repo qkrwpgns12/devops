@@ -52,5 +52,5 @@ node03
 [database]
 node04
 
-[test]
-test
+#[test]
+#test

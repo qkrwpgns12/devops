@@ -1,0 +1,29 @@
+---
+- name: Software Packages
+  hosts: all
+  become: yes
+
+  tasks:
+#    - name: get information
+#      debug:
+#        msg: "{{ ansible_hostname }}"
+
+    - name: Install package Proxy Group
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - tcpdump
+        - mailx
+        state: present
+      when: inventory_hostname in groups['proxy']
+
+    - name: Install package Database Group
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - lsof
+        - mailx
+        state: present
+      when: inventory_hostname in groups['database']
