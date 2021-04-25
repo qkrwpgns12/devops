@@ -43,14 +43,14 @@
 ## db-[99:101]-node.example.com
 
 [proxy]
-node01
+A-node01
 
 [webservers]
-node02
-node03
+A-node02
+A-node03
 
 [database]
-node04
+A-node04
 
 #[test]
 #test
