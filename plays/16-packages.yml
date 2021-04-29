@@ -27,3 +27,4 @@
         - mailx
         state: present
       when: inventory_hostname in groups['database']
+

@@ -8,3 +8,4 @@ ansible all -m user -a "name='automation' password='{{ 'devops' | password_hash(
 ansible all -m authorized_key -a "user='automation' key={{ lookup('file','/home/automation/.ssh/id_rsa.pub') }} state='present'" -u root
 
 ansible all -m copy -a "content='automation ALL=(ALL) NOPASSWD: ALL\n' dest='/etc/sudoers.d/automation'" -u root
+

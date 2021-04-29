@@ -54,3 +54,5 @@
         key: "{{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
       loop: "{{ users }}"
       when: ( item.uid >= 2000 )
+
+

@@ -15,3 +15,4 @@
         path: /home/automation/plays/database_list.txt
         dest: /home/automation/plays/archive.gz
         format: gz
+

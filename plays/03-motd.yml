@@ -21,3 +21,4 @@
         dest: /etc/motd
         content: "Welcome to MysQL Server\n"
       when: inventory_hostname in groups['database']
+
