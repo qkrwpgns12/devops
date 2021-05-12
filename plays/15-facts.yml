@@ -1,0 +1,25 @@
+---
+- name: Work with Ansible Facts
+  hosts: database
+  become: yes
+
+  tasks:
+    - name: custom facts file check
+      stat:
+        path: /etc/ansible/facts.d/custom.fact
+      register: file_result
+
+    - name: enroll custom facts
+      lineinfile:
+        path: /etc/ansible/facts.d/custom.fact
+        create: yes
+        line: "[sample_exam]\nserver_role=mysql"
+      when: file_result.stat.exists == False
+
+    - name: Gather Facts
+      setup:
+        filter: server_role
+
+    - name: Print Information
+      debug:
+        msg: "{{ ansible_local.custom.sample_exam }}"

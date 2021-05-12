@@ -1,0 +1,58 @@
+---
+- name: Users and Groups in Webservers
+  become: yes
+
+  vars_files:
+    - vars/user_list.yml
+    - 05-secret.yml
+
+  hosts: webservers
+  tasks:
+    - name: user create in webserver groups
+      user:
+        name: "{{ item.username }}"
+        password: "{{ user_password | hash(sha512) }}"
+        group: wheel
+        uid: "{{ item.uid }}"
+        shell: /bin/bash
+        state: present
+      loop: "{{ users }}"
+      when: ( item.uid >= 1000 ) and ( item.uid < 2000)
+
+    - name: ssh kery file copy
+      authorized_key:
+        user: "{{ item.username }}"
+        state: present
+        key: "{{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
+      loop: "{{ users }}"
+      when: ( item.uid >= 1000 ) and ( item.uid < 2000)
+
+- name: Users and Groups in Database
+  become: yes
+
+  vars_files:
+    - vars/user_list.yml
+    - 05-secret.yml
+
+  hosts: database
+  tasks:
+    - name: user create in database groups
+      user:
+        name: "{{ item.username }}"
+        password: "{{ user_password | hash(sha512) }}"
+        group: wheel
+        uid: "{{ item.uid }}"
+        shell: /bin/bash
+        state: present
+      loop: "{{ users }}"
+      when: ( item.uid >= 2000 )
+
+    - name: ssh kery file copy
+      authorized_key:
+        user: "{{ item.username }}"
+        state: present
+        key: "{{ lookup('file', '/home/automation/.ssh/id_rsa.pub') }}"
+      loop: "{{ users }}"
+      when: ( item.uid >= 2000 )
+
+

@@ -1,0 +1,18 @@
+---
+- name: Use Conditionals to Control Play Execution
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: set vm.swappiness if server mem more than 2048
+      sysctl:
+        name: vm.sweappiness
+        value: 10
+        state: present
+      when: ansible_memtotal_mb >= 2048
+
+    - name: print error msg if server mem less than 2048
+      debug:
+        msg: "ERROR! This Server Mem has less than 2048MB"
+      when: ansible_memtotal_mb < 2048
+

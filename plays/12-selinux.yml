@@ -1,0 +1,18 @@
+---
+- name: Security
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: semanage package check
+      package:
+        name: policycoreutils-python-utils
+        state: present
+
+    - name: modify SELinux bool
+      seboolean:
+        name: httpd_can_network_connect
+        state: yes
+        persistent: yes
+
+

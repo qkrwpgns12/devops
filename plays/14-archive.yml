@@ -1,0 +1,18 @@
+---
+- name: Use Archiving
+  hosts: database
+  become: yes
+
+  tasks:
+    - name: create database list
+      lineinfile:
+        path: /home/automation/plays/database_list.txt
+        create: yes
+        line: "dev,test,qa,prod"
+
+    - name: Archive the file
+      archive:
+        path: /home/automation/plays/database_list.txt
+        dest: /home/automation/plays/archive.gz
+        format: gz
+

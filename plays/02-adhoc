@@ -1,0 +1,11 @@
+# useradd automation
+# passwd automation
+# su - automation
+# ssh-keygen
+
+ansible all -m user -a "name='automation' password='{{ 'devops' | password_hash('sha512') }}' state='present'" -u root
+
+ansible all -m authorized_key -a "user='automation' key={{ lookup('file','/home/automation/.ssh/id_rsa.pub') }} state='present'" -u root
+
+ansible all -m copy -a "content='automation ALL=(ALL) NOPASSWD: ALL\n' dest='/etc/sudoers.d/automation'" -u root
+

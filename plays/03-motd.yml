@@ -1,0 +1,24 @@
+---
+- name: File Content
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: modify motd proxy
+      copy:
+        dest: /etc/motd
+        content: "Welcome to HAProxy Server\n"
+      when: inventory_hostname in groups['proxy']
+
+    - name: modify motd webserver
+      copy:
+        dest: /etc/motd
+        content: "Welcome to Apache Server\n"
+      when: inventory_hostname in groups['webservers'] 
+
+    - name: modify motd webserver
+      copy:
+        dest: /etc/motd
+        content: "Welcome to MysQL Server\n"
+      when: inventory_hostname in groups['database']
+
