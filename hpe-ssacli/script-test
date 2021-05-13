@@ -1,0 +1,59 @@
+#!/bin/bash
+
+### Configure RAID in HPE SmartArray Controller ###
+line=`cat ssacli | grep physicaldrive | awk '{ print $2 }'`
+# line=`ssacli ctrl all show config | grep physicaldrive | awk '{ print $2 }'`
+# line=`ssacli ctrl slot=0 pd all show | grep physicaldrive | awk '{ print $2 }'`
+
+echo "=========================================";
+echo "Start Create RAID 0";
+for i in $line
+do
+  echo "$i"
+#  ssacli ctrl slot=0 create type=ld drives=$i raid=0
+done
+sleep 1
+echo "Raid Configuration Complete";
+
+#ssacli ctrl all show
+
+
+
+### Partitioning Physical Drive ###
+
+echo "=========================================";
+echo "Copy Original /etc/fstab to /etc/fstab.bak"
+#cp /etc/fstab /etc/fstab.bak
+echo "Copy Complete"
+
+echo "=========================================";
+echo "Start Parted";
+j=1
+for i in {b..m}
+do
+   echo "Parted /dev/sd"$i"1"
+#  parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% set 1
+#  echo "/dev/sd$i1 /DATA0$j ext4 defaults 0 0" >> /etc/fstab
+  j=$((j+1));
+done
+sleep 1
+echo "Partitioning Complete";
+
+
+
+echo "=========================================";
+echo "Start mkfs"
+for i in {b..m}
+do
+ echo "print mkfs /dev/sd"$i"1"
+#  mkfs.ext4 /dev/sd$i1
+done
+sleep 1
+echo "mkfs Complete";
+
+echo "=========================================";
+echo "Start Mount"
+#mount -a
+sleep 1
+echo "Mount Complete";
+echo "=========================================";

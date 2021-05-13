@@ -1,0 +1,53 @@
+Smart HBA H240 in Slot 2 (RAID Mode)      (sn: )
+
+
+
+
+
+   Port Name: 2I
+
+
+
+   Port Name: 1I
+
+
+
+   Internal Drive Cage at Port 1I, Box 1, OK
+
+   array A (Solid State SATA, Unused Space: 0  MB)
+
+
+
+
+
+      logicaldrive 1 (447.1 GB, RAID 1, OK)
+
+
+
+      physicaldrive 1I:1:1 (port 1I:box 1:bay 1, Solid State SATA, 480.1 GB, OK)
+
+      physicaldrive 1I:1:2 (port 1I:box 1:bay 2, Solid State SATA, 480.1 GB, OK)
+
+
+
+   array B (SATA, Unused Space: 0  MB)
+
+
+
+
+
+      logicaldrive 2 (931.5 GB, RAID 0, OK)
+
+
+
+      physicaldrive 1I:1:3 (port 1I:box 1:bay 3, SATA, 1 TB, OK)
+
+
+
+   unassigned
+
+
+
+      physicaldrive 1I:1:4 (port 1I:box 1:bay 4, SATA, 1 TB, OK)
+
+
