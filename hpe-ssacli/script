@@ -13,7 +13,7 @@ done
 sleep 1
 echo "Raid Configuration Complete";
 
-#ssacli ctrl all show
+ssacli ctrl all show
 
 
 
@@ -30,7 +30,7 @@ j=1
 for i in {b..m}
 do
   parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% set 1
-  echo "/dev/sd"$i"1" /DATA0$j ext4 defaults 0 0" >> /etc/fstab
+  echo '"/dev/sd"$i"1" /DATA0$j ext4 defaults 0 0' >> /etc/fstab
   j=$((j+1));
 done
 sleep 1
