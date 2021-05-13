@@ -21,7 +21,7 @@ ssacli ctrl all show
 
 echo "=========================================";
 echo "Copy Original /etc/fstab to /etc/fstab.bak"
-#cp /etc/fstab /etc/fstab.bak
+cp /etc/fstab /etc/fstab.bak
 echo "Copy Complete"
 
 echo "=========================================";
@@ -29,8 +29,8 @@ echo "Start Parted";
 j=1
 for i in {b..m}
 do
-  parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% set 1
-  echo '"/dev/sd"$i"1" /DATA0$j ext4 defaults 0 0' >> /etc/fstab
+  parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% 1049kb set 1
+  echo "/dev/sd$i"1" /DATA0$j ext4 defaults 0 0" >> /etc/fstab
   j=$((j+1));
 done
 sleep 1
