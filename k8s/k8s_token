@@ -1,2 +1,0 @@
-kubeadm join 10.25.4.140:6443 --token 68fblz.dhoif2h38sa25wt5 \
-        --discovery-token-ca-cert-hash sha256:43bba9420bf589cc4cb06aa9d57c93644df27696750503291cbe48bcb37aa73d
