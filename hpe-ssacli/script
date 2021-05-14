@@ -2,7 +2,7 @@
 
 ### Configure RAID in HPE SmartArray Controller ###
 # line=`ssacli ctrl all show config | grep physicaldrive | awk '{ print $2 }'`
-line=`ssacli ctrl slot=0 pd all show | grep physicaldrive | awk '{ print $2 }'`
+line=`ssacli ctrl slot=0 pd allunassigned show | grep physicaldrive | awk '{ print $2 }'`
 
 echo "=========================================";
 echo "Start Create RAID 0";
