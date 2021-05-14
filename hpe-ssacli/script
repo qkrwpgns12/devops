@@ -8,7 +8,7 @@ echo "=========================================";
 echo "Start Create RAID 0";
 for i in $line
 do
-  ssacli ctrl slot=0 create type=ld drives=$i raid=0
+ssacli ctrl slot=0 create type=ld drives=$i raid=0
 done
 sleep 1
 echo "Raid Configuration Complete";
@@ -29,9 +29,9 @@ echo "Start Parted";
 j=1
 for i in {b..m}
 do
-  parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% 1049kb set 1
-  echo "/dev/sd$i"1" /DATA0$j ext4 defaults 0 0" >> /etc/fstab
-  j=$((j+1));
+parted --script /dev/sd$i mklabel gpt mkpart primary ext4 100% 1049kb set 1;
+echo "/dev/sd$i"1" /DATA$j ext4 defaults 0 0" >> /etc/fstab;
+j=$((j+1));
 done
 sleep 1
 echo "Partitioning Complete";
@@ -42,14 +42,14 @@ echo "=========================================";
 echo "Start mkfs"
 for i in {b..m}
 do
-  mkfs.ext4 "/dev/sd"$i"1";
+mkfs.ext4 "/dev/sd"$i"1";
 done
 sleep 1
 echo "mkfs Complete";
 
 echo "=========================================";
 echo "Start Mount"
-mount -a
+mount -a;
 sleep 1
 echo "Mount Complete";
 echo "=========================================";
